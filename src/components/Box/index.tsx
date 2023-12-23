@@ -2,9 +2,12 @@
 import { type FC } from 'react'
 
 const Box: FC<unknown> = () => (
-  <mesh>
-    <boxGeometry args={[1, 1, 1]}/>
-  </mesh>
+  <boxHelper>
+    <mesh>
+      <boxGeometry args={[1, 1, 1]}/>
+      <meshPhongMaterial color={'red'}/>
+    </mesh>
+  </boxHelper>
 )
 
 export default Box

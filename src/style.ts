@@ -13,10 +13,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     #root {
-        background: green;
-
         #canvas {
-            background: rebeccapurple;
+            background: dimgrey;
         }
     }
 `

@@ -3,8 +3,7 @@ import { type FC } from 'react'
 
 const Box: FC<unknown> = () => (
   <mesh>
-    <boxGeometry args={[1, 1, 1]} />
-    <meshStandardMaterial color={'red'} />
+    <boxGeometry args={[1, 1, 1]}/>
   </mesh>
 )
 

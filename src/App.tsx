@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 
 function App() {
   return (
-    <Canvas>
+    <Canvas id={'canvas'}>
       <Box/>
     </Canvas>
   )

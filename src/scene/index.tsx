@@ -1,7 +1,7 @@
-import Box from 'components/Box'
 import { Canvas } from '@react-three/fiber'
+import Box from 'components/Box'
 
-function App() {
+function Scene() {
   return (
     <Canvas id={'canvas'}>
       <Box/>
@@ -9,4 +9,4 @@ function App() {
   )
 }
 
-export default App
+export default Scene

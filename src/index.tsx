@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import Scene from 'scene'
 import { GlobalStyle } from './style'
 
 const root = ReactDOM.createRoot(
@@ -9,6 +9,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <GlobalStyle />
-    <App/>
+    <Scene/>
   </StrictMode>
 )

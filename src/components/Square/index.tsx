@@ -28,8 +28,8 @@ const Square: FC<Props> = ({
     if (mounted.current) {
       animate(timeFraction => timeFraction, progress => {
         setPosition([
-          x !== prevX ? progress * 100 + _x : _x,
-          y !== prevY ? progress * 100 + _y : _y,
+          x > prevX! ? progress * 100 + _x : x < prevX! ? _x - progress * 100 : _x,
+          y > prevY! ? progress * 100 + _y : y < prevY! ? _y - progress * 100 : _y,
         ])
       }, 100)
     } else {

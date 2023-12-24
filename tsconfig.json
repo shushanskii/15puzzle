@@ -23,6 +23,7 @@
       "scene/*": ["scene/*"],
       "components/*": ["components/*"],
       "utils/*": ["utils/*"],
+      "reducers/*": ["reducers/*"],
       "types/*": ["types/*"]
     }
   },

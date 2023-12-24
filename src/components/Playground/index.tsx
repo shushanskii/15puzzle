@@ -1,21 +1,20 @@
-import { type FC, useState } from 'react'
-import type { Position } from 'types/Position'
+import { type FC, useContext } from 'react'
+import { changePosition } from 'reducers/changePosition'
 import Square from 'components/Square'
+import { StateContext } from 'components/State'
 
 const Playground: FC<unknown> = () => {
-  const [position, setPosition] = useState<[Position, Position]>([1, 1])
-
-  const [_x, _y] = position
+  const { x, y } = useContext(StateContext)
 
   const handleClick = () => {
-    setPosition(_x === 1 ? [0, 0] : [1, 1])
+    changePosition(1, 1)
   }
 
   return (
     <>
       <Square
         size={100}
-        position={[_x, _y]}
+        position={[x, y]}
         onClick={handleClick}
       />
     </>

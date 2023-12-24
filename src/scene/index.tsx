@@ -5,11 +5,13 @@ import { gradToRad } from 'utils/gradToRad'
 import { type Position } from 'types/Position'
 
 const Scene: FC<unknown> = () => {
-  const [position, setPosition] = useState<Position>(0)
+  const [position, setPosition] = useState<[Position, Position]>([0, 0])
+
+  const [_x, _y] = position
 
   const handleClick = () => {
-    if (position < 3) {
-      setPosition((1 + position) as Position)
+    if (_x < 3) {
+      setPosition([(_x + 1) as Position, (_y + 1) as Position])
     }
   }
 
@@ -33,7 +35,7 @@ const Scene: FC<unknown> = () => {
       />
       <Square
         size={100}
-        position={[position, position]}
+        position={[_x, _y]}
         onClick={handleClick}
       />
     </Canvas>

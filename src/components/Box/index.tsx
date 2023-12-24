@@ -1,21 +1,26 @@
 /* eslint-disable react/no-unknown-property */
-import { type FC, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { type FC } from 'react'
 import { gradToRad } from 'utils/gradToRad'
 
-const Box: FC<unknown> = () => {
-  const [rotation, setRotation] = useState<number>(0)
+interface Props {
+  size: number
+  position: [number, number]
+}
 
-  useFrame((state, delta) => {
-    setRotation(rotation + delta)
-  })
+const Square: FC<Props> = ({
+  size,
+  position: [x, y],
+}) => {
+  const bias = size / 2
 
   return (
-    <mesh rotation={[gradToRad(-90), 0, rotation]} position={[50, 0, 0]}>
-      <planeGeometry args={[100, 100]}/>
-      <meshPhongMaterial color={'red'}/>
-    </mesh>
+    <group position={[x, 0, y]}>
+      <mesh rotation={[gradToRad(-90), 0, 0]} position={[bias, 0, bias]}>
+        <planeGeometry args={[size, size]}/>
+        <meshPhongMaterial color={'red'}/>
+      </mesh>
+    </group>
   )
 }
 
-export default Box
+export default Square

@@ -1,7 +1,6 @@
-/* eslint-disable react/no-unknown-property */
 import { type FC } from 'react'
 import { Canvas } from '@react-three/fiber'
-import Square from 'components/Box'
+import Square from 'components/Square'
 import { gradToRad } from 'utils/gradToRad'
 
 const Scene: FC<unknown> = () => (
@@ -22,7 +21,7 @@ const Scene: FC<unknown> = () => (
       position={[0, 1, 0]}
       rotation={[gradToRad(-90), 0, 0]}
     />
-    <Square size={100} position={[-200, -200]}/>
+    <Square size={100} position={[0, 0]}/>
   </Canvas>
 )
 

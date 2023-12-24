@@ -22,7 +22,8 @@
     "paths": {
       "scene/*": ["scene/*"],
       "components/*": ["components/*"],
-      "utils/*": ["utils/*"]
+      "utils/*": ["utils/*"],
+      "types/*": ["types/*"]
     }
   },
   "include": [

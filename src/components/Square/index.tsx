@@ -26,7 +26,7 @@ const Square: FC<Props> = ({
 
   useEffect(() => {
     if (mounted.current) {
-      animate(timeFraction => timeFraction, progress => {
+      animate(timeFraction => 1 - Math.sin(Math.acos(timeFraction)), progress => {
         setPosition([
           x > prevX! ? progress * 100 + _x : x < prevX! ? _x - progress * 100 : _x,
           y > prevY! ? progress * 100 + _y : y < prevY! ? _y - progress * 100 : _y,

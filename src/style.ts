@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 
     #root {
         #canvas {
-            background: dimgrey;
+            background: white;
         }
     }
 `

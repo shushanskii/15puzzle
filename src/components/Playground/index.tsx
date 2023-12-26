@@ -23,10 +23,10 @@ function Playground() {
             <Square
               key={`unit-square-${unit}`}
               size={100}
-              position={[i as Position, j as Position]}
+              position={[j as Position, i as Position]}
               onClick={handleClick(i, j)}
             />
-          )))}
+          ))).flat()}
     </>
   )
 }

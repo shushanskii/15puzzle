@@ -2,8 +2,9 @@ import { createContext, type ReactNode } from 'react'
 import { useSignals } from '@preact/signals-react/runtime'
 import { signal } from '@preact/signals-react'
 import { type State } from 'types/State'
+import { Units } from 'types/Game'
 
-export const state = signal<State>({ x: 0, y: 0 })
+export const state = signal<State>({ playground: [Units.First, Units.EMPTY, Units.Second, Units.Third] })
 
 export const StateContext = createContext<State>(state.value)
 

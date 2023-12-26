@@ -3,7 +3,7 @@ import { gradToRad } from 'utils/gradToRad'
 import { positionToCoordinate } from 'utils/positionToCoordinate'
 import { animate } from 'utils/animate'
 import { usePrevious } from 'utils/usePrevious'
-import { type Position } from 'types/Position'
+import { type Position } from 'types/Game'
 
 interface Props {
   size: number

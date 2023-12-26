@@ -24,6 +24,7 @@
       "components/*": ["components/*"],
       "utils/*": ["utils/*"],
       "reducers/*": ["reducers/*"],
+      "selectors/*": ["selectors/*"],
       "types/*": ["types/*"]
     }
   },

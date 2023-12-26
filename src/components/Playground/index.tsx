@@ -1,22 +1,31 @@
-import { type FC, useContext } from 'react'
-import { changePosition } from 'reducers/changePosition'
+import { useContext } from 'react'
 import Square from 'components/Square'
 import { StateContext } from 'components/State'
+import { getEmptyIndex } from 'selectors/index'
+import { indexToPosition } from 'utils/indexToPosition'
+import { Units } from 'types/Game'
+import { changePosition } from 'reducers/changePosition'
 
-const Playground: FC<unknown> = () => {
-  const { x, y } = useContext(StateContext)
+function Playground() {
+  const { playground } = useContext(StateContext)
 
-  const handleClick = () => {
-    changePosition(1, 1)
+  const handleClick = (index: number) => () => {
+    const nextPosition = getEmptyIndex(playground, index)
+    if (nextPosition !== undefined) {
+      changePosition((index as unknown) as any, (nextPosition as unknown) as any)
+    }
   }
 
   return (
     <>
-      <Square
-        size={100}
-        position={[x, y]}
-        onClick={handleClick}
-      />
+      {playground.map((unit, index) => unit !== Units.EMPTY && (
+        <Square
+          key={`unit-square-${unit}`}
+          size={100}
+          position={indexToPosition((index as unknown) as any)}
+          onClick={handleClick(index)}
+        />
+      ))}
     </>
   )
 }

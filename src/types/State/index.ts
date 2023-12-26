@@ -1,6 +1,5 @@
-import { type Position } from 'types/Position'
+import { type Units } from 'types/Game'
 
 export interface State {
-  x: Position
-  y: Position
+  playground: Units[]
 }

@@ -15,7 +15,6 @@ function Scene() {
         near: -1
       }}
     >
-      <gridHelper args={[50000, 500, 'darkred']}/>
       <directionalLight
         color={'white'}
         position={[0, 1, 0]}

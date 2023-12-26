@@ -12,7 +12,7 @@ function Playground() {
   const handleClick = (index: number) => () => {
     const nextPosition = getEmptyIndex(playground, index)
     if (nextPosition !== undefined) {
-      changePosition((index as unknown) as any, (nextPosition as unknown) as any)
+      changePosition(index, nextPosition)
     }
   }
 
@@ -22,7 +22,7 @@ function Playground() {
         <Square
           key={`unit-square-${unit}`}
           size={100}
-          position={indexToPosition((index as unknown) as any)}
+          position={indexToPosition(index)!}
           onClick={handleClick(index)}
         />
       ))}

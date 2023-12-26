@@ -1,4 +1,4 @@
-import { type FC, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gradToRad } from 'utils/gradToRad'
 import { positionToCoordinate } from 'utils/positionToCoordinate'
 import { animate } from 'utils/animate'
@@ -11,11 +11,11 @@ interface Props {
   onClick: () => void
 }
 
-const Square: FC<Props> = ({
+function Square({
   size,
   position: [x, y],
   onClick,
-}) => {
+}: Props) {
   const bias = size / 2
   const mounted = useRef<boolean>(false)
   const [position, setPosition] = useState<[number, number]>([positionToCoordinate(x), positionToCoordinate(y)])

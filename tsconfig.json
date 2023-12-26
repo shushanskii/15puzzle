@@ -22,7 +22,9 @@
     "paths": {
       "scene/*": ["scene/*"],
       "components/*": ["components/*"],
+      "contexts/*": ["contexts/*"],
       "utils/*": ["utils/*"],
+      "state/*": ["state/*"],
       "reducers/*": ["reducers/*"],
       "selectors/*": ["selectors/*"],
       "types/*": ["types/*"]

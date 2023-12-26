@@ -1,10 +1,10 @@
 import { useContext } from 'react'
-import Square from 'components/Square'
-import { StateContext } from 'components/State'
+import { StateContext } from 'contexts'
+import { changePosition } from 'reducers/changePosition'
 import { getEmptyIndex } from 'selectors/index'
+import Square from 'components/Square'
 import { indexToPosition } from 'utils/indexToPosition'
 import { Units } from 'types/Game'
-import { changePosition } from 'reducers/changePosition'
 
 function Playground() {
   const { playground } = useContext(StateContext)

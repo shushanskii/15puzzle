@@ -17,6 +17,7 @@ function Scene() {
     >
       <directionalLight
         color={'white'}
+        intensity={3}
         position={[0, 1, 0]}
         rotation={[gradToRad(-90), 0, 0]}
       />

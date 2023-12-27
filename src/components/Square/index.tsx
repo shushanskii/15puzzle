@@ -59,7 +59,7 @@ function Square({
         position={[bias, 0, bias]}
       >
         <planeGeometry args={[size, size]}/>
-        <meshStandardMaterial color={'#ca8c8c'} />
+        <meshStandardMaterial color={'#61c6e6'} />
         <Text {...fontProps}>{caption}</Text>
       </mesh>
     </group>

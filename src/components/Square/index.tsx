@@ -1,30 +1,33 @@
 import { useEffect, useRef, useState } from 'react'
-import { useTexture } from '@react-three/drei'
+import { Text } from '@react-three/drei'
 import { gradToRad } from 'utils/gradToRad'
 import { positionToCoordinate } from 'utils/positionToCoordinate'
 import { animate } from 'utils/animate'
 import { usePrevious } from 'utils/usePrevious'
 import { type Position } from 'types/Game'
 
+const fontProps = {
+  font: 'assets/fonts/source-sans-pro-latin-400-normal.woff',
+  fontSize: 35,
+  letterSpacing: -0.05,
+  lineHeight: 1,
+  color: 'red',
+  'material-toneMapped': false,
+}
+
 interface Props {
   size: number
   position: [Position, Position]
+  caption: string
   onClick: () => void
 }
 
 function Square({
   size,
   position: [x, y],
+  caption,
   onClick,
 }: Props) {
-  const texture = useTexture({
-    map: 'assets/textures/Marble021_1K-JPG/Marble021_1K-JPG_Color.jpg', //
-    displacementMap: 'assets/textures/Marble021_1K-JPG/Marble021_1K-JPG_Displacement.jpg',
-    normalMap: 'assets/textures/Marble021_1K-JPG/Marble021_1K-JPG_NormalGL.jpg',
-    roughnessMap: 'assets/textures/Marble021_1K-JPG/Marble021_1K-JPG_Roughness.jpg',
-    // aoMap: 'PavingStones092_1K_AmbientOcclusion.jpg',
-  })
-
   const bias = size / 2
   const mounted = useRef<boolean>(false)
   const [position, setPosition] = useState<[number, number]>([positionToCoordinate(x), positionToCoordinate(y)])
@@ -56,7 +59,8 @@ function Square({
         position={[bias, 0, bias]}
       >
         <planeGeometry args={[size, size]}/>
-        <meshStandardMaterial {...texture} />
+        <meshStandardMaterial color={'#ca8c8c'} />
+        <Text {...fontProps}>{caption}</Text>
       </mesh>
     </group>
   )

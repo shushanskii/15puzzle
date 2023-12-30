@@ -1,5 +1,7 @@
 import { Units } from 'types/Game'
 
+const REPEAT = Math.floor(Math.random() * 9) * 2
+
 const units = [
   Units.First, Units.Second, Units.Third, Units.Fourth,
   Units.Fifth, Units.Sixth, Units.Seventh, Units.Eighth,
@@ -7,14 +9,25 @@ const units = [
   Units.Thirteenth, Units.Fourteenth, Units.Fifteenth, Units.EMPTY,
 ]
 
-export function initialize() {
-  const playground: Units[][] = [[], [], [], []]
+function getRandomIndex(n: number): number {
+  return Math.floor(Math.random() * n)
+}
 
+function shuffle(units: Units[], first: number, second: number, repeat: number): Units[] {
+  [units[first], units[second]] = [units[second], units[first]]
+  const n = units.length - repeat
+  return repeat > 1 ? shuffle(units, getRandomIndex(n), getRandomIndex(n), --repeat) : units
+}
+
+export function initialize() {
+  const n = units.length
+  const _units = shuffle(units, getRandomIndex(n), getRandomIndex(n), REPEAT)
+  const playground: Units[][] = [[], [], [], []]
+  let index = 0
   for (const i of [0, 1, 2, 3]) {
     for (const j of [0, 1, 2, 3]) {
-      const randomUnitIndex = Math.floor(Math.random() * units.length)
-      playground[i][j] = units[randomUnitIndex]
-      units.splice(randomUnitIndex, 1)
+      playground[i][j] = _units[index]
+      index++
     }
   }
 

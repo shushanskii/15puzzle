@@ -43,7 +43,8 @@ function Square({
           x > prevX! ? progress * 100 + _x : x < prevX! ? _x - progress * 100 : _x,
           y > prevY! ? progress * 100 + _y : y < prevY! ? _y - progress * 100 : _y,
         ])
-      }, 100)
+        // eslint-disable-next-line no-console
+      }, console.log, 100)
     } else {
       mounted.current = true
     }

@@ -1,7 +1,5 @@
 import { Units } from 'types/Game'
 
-const REPEAT = Math.floor(Math.random() * 9) * 2
-
 export const units = [
   Units.First, Units.Second, Units.Third, Units.Fourth,
   Units.Fifth, Units.Sixth, Units.Seventh, Units.Eighth,
@@ -9,23 +7,28 @@ export const units = [
   Units.Thirteenth, Units.Fourteenth, Units.Fifteenth, Units.EMPTY,
 ]
 
-function getRandomIndex(n: number): number {
-  return Math.floor(Math.random() * n)
-}
+function shuffle(array: Units[]): Units[] {
+  let count = 0
 
-function shuffle(units: Units[], first: number, second: number, repeat: number): Units[] {
-  units = [...units];
-  [units[first], units[second]] = [units[second], units[first]]
-  const n = units.length - repeat
-  if (first === second) {
-    return shuffle(units, first, getRandomIndex(n), repeat)
+  const swap = (arr: Units[], i: number, j: number) => {
+    count++;
+    [arr[i], arr[j]] = [arr[j], arr[i]]
   }
-  return repeat > 1 ? shuffle(units, getRandomIndex(n), getRandomIndex(n), --repeat) : units
+
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    swap(array, i, j)
+  }
+
+  if (count % 2 !== 0) {
+    swap(array, 0, 1)
+  }
+
+  return array
 }
 
 export function initialize() {
-  const n = units.length
-  const _units = shuffle(units, getRandomIndex(n), getRandomIndex(n), REPEAT)
+  const _units = shuffle([...units])
   const playground: Units[][] = [[], [], [], []]
   let index = 0
   for (const i of [0, 1, 2, 3]) {

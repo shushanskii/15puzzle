@@ -19,7 +19,7 @@ export function animate(
     }
 
     if (timeFraction >= 1) {
-      callback.call({}, 'olololo')
+      callback.call({})
     }
   })
 }

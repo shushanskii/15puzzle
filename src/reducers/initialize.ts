@@ -2,7 +2,7 @@ import { Units } from 'types/Game'
 
 const REPEAT = Math.floor(Math.random() * 9) * 2
 
-const units = [
+export const units = [
   Units.First, Units.Second, Units.Third, Units.Fourth,
   Units.Fifth, Units.Sixth, Units.Seventh, Units.Eighth,
   Units.Ninth, Units.Tenth, Units.Eleventh, Units.Twelfth,

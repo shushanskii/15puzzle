@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Text } from '@react-three/drei'
+import { restart } from 'reducers/restart'
 import { gradToRad } from 'utils/gradToRad'
 import { positionToCoordinate } from 'utils/positionToCoordinate'
 import { animate } from 'utils/animate'
@@ -43,8 +44,7 @@ function Square({
           x > prevX! ? progress * 100 + _x : x < prevX! ? _x - progress * 100 : _x,
           y > prevY! ? progress * 100 + _y : y < prevY! ? _y - progress * 100 : _y,
         ])
-        // eslint-disable-next-line no-console
-      }, console.log, 100)
+      }, restart, 100)
     } else {
       mounted.current = true
     }
@@ -60,7 +60,7 @@ function Square({
         position={[bias, 0, bias]}
       >
         <planeGeometry args={[size, size]}/>
-        <meshStandardMaterial color={'#61c6e6'} />
+        <meshStandardMaterial color={'#61c6e6'}/>
         <Text {...fontProps}>{caption}</Text>
       </mesh>
     </group>

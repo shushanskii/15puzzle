@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
 import { Text } from '@react-three/drei'
-import { restart } from 'reducers/restart'
+import { animated, useSpring } from '@react-spring/three'
 import { gradToRad } from 'utils/gradToRad'
 import { positionToCoordinate } from 'utils/positionToCoordinate'
-import { animate } from 'utils/animate'
 import { usePrevious } from 'utils/usePrevious'
 import { type Position } from 'types/Game'
 
@@ -30,30 +28,32 @@ function Square({
   onClick,
 }: Props) {
   const bias = size / 2
-  const mounted = useRef<boolean>(false)
-  const [position, setPosition] = useState<[number, number]>([positionToCoordinate(x), positionToCoordinate(y)])
   const prevX = usePrevious<Position>(x)
   const prevY = usePrevious<Position>(y)
 
-  const [_x, _y] = position
-
-  useEffect(() => {
-    if (mounted.current) {
-      animate(timeFraction => 1 - Math.sin(Math.acos(timeFraction)), progress => {
-        setPosition([
-          x > prevX! ? progress * 100 + _x : x < prevX! ? _x - progress * 100 : _x,
-          y > prevY! ? progress * 100 + _y : y < prevY! ? _y - progress * 100 : _y,
-        ])
-      }, restart, 100)
-    } else {
-      mounted.current = true
-    }
-  }, [x, y])
+  const { position } = useSpring({
+    from: {
+      position: [
+        positionToCoordinate(prevX!),
+        0,
+        positionToCoordinate(prevY!),
+      ],
+    },
+    to: {
+      position: [
+        positionToCoordinate(x),
+        0,
+        positionToCoordinate(y),
+      ],
+    },
+    config: { duration: 100 },
+    reset: true,
+  })
 
   return (
-    <group
+    <animated.group
       onClick={onClick}
-      position={[_x, 0, _y]}
+      position={position.to((x, _, y) => [x, 0, y])}
     >
       <mesh
         rotation={[gradToRad(-90), 0, 0]}
@@ -63,7 +63,7 @@ function Square({
         <meshStandardMaterial color={'#61c6e6'}/>
         <Text {...fontProps}>{caption}</Text>
       </mesh>
-    </group>
+    </animated.group>
   )
 }
 

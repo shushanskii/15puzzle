@@ -20,7 +20,7 @@ function shuffle(array: Units[]): Units[] {
     swap(array, i, j)
   }
 
-  if (count % 2 !== 0) {
+  if (count % 2 === 0) {
     swap(array, 0, 1)
   }
 

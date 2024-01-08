@@ -14,8 +14,12 @@ function getRandomIndex(n: number): number {
 }
 
 function shuffle(units: Units[], first: number, second: number, repeat: number): Units[] {
+  units = [...units];
   [units[first], units[second]] = [units[second], units[first]]
   const n = units.length - repeat
+  if (first === second) {
+    return shuffle(units, first, getRandomIndex(n), repeat)
+  }
   return repeat > 1 ? shuffle(units, getRandomIndex(n), getRandomIndex(n), --repeat) : units
 }
 

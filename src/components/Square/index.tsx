@@ -4,6 +4,7 @@ import { gradToRad } from 'utils/gradToRad'
 import { positionToCoordinate } from 'utils/positionToCoordinate'
 import { usePrevious } from 'utils/usePrevious'
 import { type Position } from 'types/Game'
+import { restart } from 'reducers/restart'
 
 const fontProps = {
   font: 'assets/fonts/source-sans-pro-latin-400-normal.woff',
@@ -34,26 +35,25 @@ function Square({
   const { position } = useSpring({
     from: {
       position: [
-        positionToCoordinate(prevX!),
-        0,
-        positionToCoordinate(prevY!),
+        positionToCoordinate(prevX ?? x),
+        positionToCoordinate(prevY ?? y),
       ],
     },
     to: {
       position: [
         positionToCoordinate(x),
-        0,
         positionToCoordinate(y),
       ],
     },
     config: { duration: 100 },
     reset: true,
+    onRest: () => { restart() },
   })
 
   return (
     <animated.group
       onClick={onClick}
-      position={position.to((x, _, y) => [x, 0, y])}
+      position={position.to((x, y) => [x, 0, y])}
     >
       <mesh
         rotation={[gradToRad(-90), 0, 0]}

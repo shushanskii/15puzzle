@@ -1,19 +1,21 @@
 import { Units } from 'types/Game'
 
-export function getEmptyIndex(playground: Units[][], i: number, j: number): [number, number] | undefined {
-  if (playground[i - 1] !== undefined && playground[i - 1][j] === Units.EMPTY) {
-    return [i - 1, j]
+export function getNearestEmpty(playground: Units[][], i: number, j: number): [number, number] | undefined {
+  const size = playground.length
+
+  // Check the row i
+  for (let col = 0; col < size; col++) {
+    if (playground[i][col] === Units.EMPTY) {
+      return [i, col]
+    }
   }
 
-  if (playground[i + 1] !== undefined && playground[i + 1][j] === Units.EMPTY) {
-    return [i + 1, j]
+  // Check the column j
+  for (let row = 0; row < size; row++) {
+    if (playground[row][j] === Units.EMPTY) {
+      return [row, j]
+    }
   }
 
-  if (playground[i][j - 1] === Units.EMPTY) {
-    return [i, j - 1]
-  }
-
-  if (playground[i][j + 1] === Units.EMPTY) {
-    return [i, j + 1]
-  }
+  return undefined
 }

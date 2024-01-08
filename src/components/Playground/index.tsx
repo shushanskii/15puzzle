@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { StateContext } from 'contexts'
-import { changePosition } from 'reducers/changePosition'
-import { getEmptyIndex } from 'selectors/index'
+import { shift } from 'reducers/shift'
+import { getNearestEmpty } from 'selectors/index'
 import Square from 'components/Square'
 import { type Position, Units } from 'types/Game'
 
@@ -9,9 +9,9 @@ function Playground() {
   const { playground } = useContext(StateContext)
 
   const handleClick = (i: number, j: number) => () => {
-    const nextPosition = getEmptyIndex(playground, i, j)
-    if (nextPosition !== undefined) {
-      changePosition([i, j], nextPosition)
+    const end = getNearestEmpty(playground, i, j)
+    if (end !== undefined) {
+      shift([i, j], end)
     }
   }
 
